@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carlos Daniel Patiño Gómez · Bitácora de viajes</title>
+    <!-- Fuente profesional -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Inter", sans-serif;
+            background: #f4f7fc;
+            color: #1e293b;
+            line-height: 1.5;
+            padding: 2rem 1.5rem;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card {
+            max-width: 1100px;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 3rem;
+            box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.15), 0 10px 30px -15px rgba(0, 0, 0, 0.05);
+            padding: 2.5rem 2.8rem;
+            transition: all 0.2s ease;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(2px);
+        }
+
+        /* ===== ENCABEZADO con el nombre completo ===== */
+        .hero {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2.5rem;
+            border-bottom: 2px dashed #e2e8f0;
+            padding-bottom: 2rem;
+        }
+
+        .nombre-titulo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .nombre-titulo i {
+            font-size: 2.8rem;
+            color: #3b82f6;
+            background: #dbeafe;
+            padding: 0.6rem;
+            border-radius: 1.5rem;
+            box-shadow: 0 6px 12px -6px rgba(59, 130, 246, 0.25);
+        }
+
+        .nombre-titulo h1 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #1e293b 0%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .nombre-titulo span {
+            font-weight: 400;
+            color: #64748b;
+            font-size: 1.1rem;
+            margin-left: 0.25rem;
+        }
+
+        .badge {
+            background: #eef2ff;
+            padding: 0.5rem 1.2rem;
+            border-radius: 100px;
+            font-weight: 500;
+            color: #1e293b;
+            border: 1px solid #c7d2fe;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .badge i {
+            color: #3b82f6;
+        }
+
+        /* ===== TEMÁTICA: Viajes / Aventura ===== */
+        .tema-banner {
+            background: linear-gradient(145deg, #eef6ff, #f8fafc);
+            border-radius: 2rem;
+            padding: 1.8rem 2rem;
+            margin-bottom: 2.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            border: 1px solid #dce7f5;
+        }
+
+        .tema-banner .tema-texto {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .tema-banner .tema-texto i {
+            font-size: 2.2rem;
+            color: #f59e0b;
+        }
+
+        .tema-banner h2 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #0f172a;
+        }
+
+        .tema-banner h2 small {
+            font-weight: 400;
+            font-size: 1rem;
+            color: #475569;
+            margin-left: 0.5rem;
+        }
+
+        .tema-banner .chip {
+            background: #ffffff;
+            padding: 0.4rem 1rem;
+            border-radius: 100px;
+            border: 1px solid #cbd5e1;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #334155;
+        }
+
+        /* ===== GRID DE CONTENIDO ===== */
+        .grid-contenido {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2.2rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .col-principal {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .destacado {
+            background: #f1f5f9;
+            border-radius: 1.8rem;
+            padding: 1.8rem 2rem;
+            border-left: 6px solid #3b82f6;
+        }
+
+        .destacado h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .destacado h3 i {
+            color: #3b82f6;
+        }
+
+        .destacado p {
+            color: #334155;
+            font-size: 1rem;
+            max-width: 90%;
+            margin-bottom: 0.75rem;
+        }
+
+        .lista-iconos {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem 1.8rem;
+            margin-top: 0.5rem;
+        }
+
+        .lista-iconos li {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 450;
+            color: #1e293b;
+        }
+
+        .lista-iconos li i {
+            color: #3b82f6;
+            width: 1.4rem;
+            text-align: center;
+        }
+
+        .card-lugar {
+            background: white;
+            border-radius: 1.6rem;
+            padding: 1.5rem 1.8rem;
+            box-shadow: 0 8px 20px -10px rgba(0,0,0,0.06);
+            border: 1px solid #e9edf3;
+            transition: all 0.15s;
+        }
+
+        .card-lugar:hover {
+            border-color: #b9d0f0;
+            box-shadow: 0 12px 28px -12px rgba(59, 130, 246, 0.12);
+        }
+
+        .card-lugar h4 {
+            font-weight: 600;
+            font-size: 1.25rem;
+            margin-bottom: 0.3rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .card-lugar h4 i {
+            color: #f59e0b;
+        }
+
+        .card-lugar p {
+            color: #475569;
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-lugar .meta {
+            display: flex;
+            gap: 1.2rem;
+            font-size: 0.85rem;
+            color: #64748b;
+        }
+
+        .meta span i {
+            margin-right: 0.3rem;
+            color: #64748b;
+        }
+
+        /* ===== SIDEBAR ===== */
+        .col-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+        }
+
+        .widget {
+            background: #f8fafc;
+            border-radius: 1.8rem;
+            padding: 1.8rem 1.6rem;
+            border: 1px solid #e9edf3;
+        }
+
+        .widget h4 {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .widget h4 i {
+            color: #3b82f6;
+        }
+
+        .widget ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.7rem;
+        }
+
+        .widget ul li {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            font-size: 0.95rem;
+            padding: 0.3rem 0;
+            border-bottom: 1px solid #eef2f6;
+        }
+
+        .widget ul li:last-child {
+            border-bottom: none;
+        }
+
+        .widget ul li i {
+            color: #3b82f6;
+            width: 1.3rem;
+            text-align: center;
+        }
+
+        .widget .destacado-num {
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .frase {
+            background: #dbeafe;
+            border-radius: 1.8rem;
+            padding: 1.8rem 1.6rem;
+            color: #1e293b;
+            border: 1px solid #bfdbfe;
+            margin-top: 0.2rem;
+        }
+
+        .frase i {
+            color: #2563eb;
+            margin-right: 0.3rem;
+        }
+
+        .frase p {
+            font-style: italic;
+            font-weight: 450;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .frase .autor {
+            margin-top: 0.6rem;
+            font-weight: 600;
+            font-style: normal;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            color: #1e293b;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            margin-top: 2rem;
+            padding-top: 1.8rem;
+            border-top: 2px dashed #e2e8f0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .footer p {
+            color: #475569;
+            font-size: 0.95rem;
+        }
+
+        .footer p i {
+            color: #3b82f6;
+            margin: 0 0.2rem;
+        }
+
+        .footer .nombre-footer {
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.2rem;
+        }
+
+        .social-links a {
+            color: #64748b;
+            font-size: 1.3rem;
+            transition: color 0.15s, transform 0.15s;
+        }
+
+        .social-links a:hover {
+            color: #3b82f6;
+            transform: scale(1.08);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 800px) {
+            .card {
+                padding: 1.8rem;
+                border-radius: 2.2rem;
+            }
+            .grid-contenido {
+                grid-template-columns: 1fr;
+                gap: 1.8rem;
+            }
+            .hero {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.8rem;
+            }
+            .nombre-titulo h1 {
+                font-size: 2rem;
+            }
+            .tema-banner {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.8rem;
+            }
+            .destacado p {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 0.8rem;
+            }
+            .card {
+                padding: 1.2rem;
+                border-radius: 1.8rem;
+            }
+            .nombre-titulo h1 {
+                font-size: 1.6rem;
+            }
+            .nombre-titulo i {
+                font-size: 2rem;
+                padding: 0.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+
+    <!-- ========== ENCABEZADO con NOMBRE COMPLETO ========== -->
+    <header class="hero">
+        <div class="nombre-titulo">
+            <i class="fas fa-feather-alt"></i>
+            <h1>Carlos Daniel <span>Patiño Gómez</span></h1>
+        </div>
+        <div class="badge">
+            <i class="fas fa-map-pin"></i> disponible para proyectos
+        </div>
+    </header>
+
+    <!-- ========== TEMÁTICA: EXPLORACIÓN & AVENTURA ========== -->
+    <div class="tema-banner">
+        <div class="tema-texto">
+            <i class="fas fa-globe-americas"></i>
+            <h2>Bitácora de viajes <small> · temática exploración</small></h2>
+        </div>
+        <span class="chip"><i class="fas fa-compass"></i> 6 destinos</span>
+    </div>
+
+    <!-- ========== CONTENIDO PRINCIPAL ========== -->
+    <div class="grid-contenido">
+
+        <!-- COLUMNA IZQUIERDA -->
+        <div class="col-principal">
+
+            <!-- destacado -->
+            <div class="destacado">
+                <h3><i class="fas fa-rocket"></i> Próxima aventura</h3>
+                <p>Patagonia chilena · 5 días de trekking entre glaciares y bosques milenarios. <br> <strong>Carlos Daniel Patiño Gómez</strong> ya tiene el equipo listo.</p>
+                <ul class="lista-iconos">
+                    <li><i class="fas fa-hiking"></i> 45 km</li>
+                    <li><i class="fas fa-campground"></i> 3 noches</li>
+                    <li><i class="fas fa-mountain"></i> +800 m</li>
+                </ul>
+            </div>
+
+            <!-- tarjeta lugar 1 -->
+            <div class="card-lugar">
+                <h4><i class="fas fa-tree"></i> Bosque de los Arrayanes</h4>
+                <p>Un rincón escondido en la Isla Grande de Chiloé. <strong>Carlos Daniel</strong> documentó la flora endémica y los sonidos del bosque.</p>
+                <div class="meta">
+                    <span><i class="fas fa-calendar-alt"></i> Ene 2026</span>
+                    <span><i class="fas fa-camera"></i> 124 fotos</span>
+                </div>
+            </div>
+
+            <!-- tarjeta lugar 2 -->
+            <div class="card-lugar">
+                <h4><i class="fas fa-water"></i> Laguna Esmeralda</h4>
+                <p>Un espejo de agua rodeado de picos nevados. <strong>Carlos Daniel</strong> recorrió el sendero a primera hora para ver el amanecer.</p>
+                <div class="meta">
+                    <span><i class="fas fa-calendar-alt"></i> Mar 2026</span>
+                    <span><i class="fas fa-star"></i> favorito</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- COLUMNA DERECHA (SIDEBAR) -->
+        <div class="col-sidebar">
+
+            <!-- widget: estadísticas -->
+            <div class="widget">
+                <h4><i class="fas fa-chart-simple"></i> Carlos Daniel en números</h4>
+                <ul>
+                    <li><i class="fas fa-flag-checkered"></i> <span class="destacado-num">12</span> países visitados</li>
+                    <li><i class="fas fa-footprints"></i> <span class="destacado-num">1,240</span> km caminados</li>
+                    <li><i class="fas fa-map-location-dot"></i> <span class="destacado-num">28</span> rutas trazadas</li>
+                    <li><i class="fas fa-mug-saucer"></i> <span class="destacado-num">43</span> cafés de especialidad</li>
+                </ul>
+            </div>
+
+            <!-- widget: próximos destinos -->
+            <div class="widget">
+                <h4><i class="fas fa-clock"></i> Próximos destinos</h4>
+                <ul>
+                    <li><i class="fas fa-mountain-sun"></i> Torres del Paine · Oct 2026</li>
+                    <li><i class="fas fa-umbrella-beach"></i> Costa de Oaxaca · Dic 2026</li>
+                    <li><i class="fas fa-city"></i> Lisboa · Feb 2027</li>
+                </ul>
+            </div>
+
+            <!-- frase / cita -->
+            <div class="frase">
+                <i class="fas fa-quote-left"></i>
+                <p>"El mundo es un libro, y aquellos que no viajan leen solo una página."</p>
+                <div class="autor"><i class="fas fa-pen-fancy"></i> — Carlos Daniel Patiño Gómez</div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ========== FOOTER con NOMBRE COMPLETO ========== -->
+    <footer class="footer">
+        <p>
+            <i class="fas fa-copyright"></i> 2026 · 
+            <span class="nombre-footer">Carlos Daniel Patiño Gómez</span> — exploración, fotografía y bitácora.
+        </p>
+        <div class="social-links">
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+    </footer>
+
+</div>
+
+<script>
+    console.log("Página de Carlos Daniel Patiño Gómez — temática viajes");
+</script>
+
+</body>
+</html>
